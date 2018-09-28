@@ -78,14 +78,14 @@ namespace StructExample
         /// <summary>
         /// converts a struct to byte[]
         /// </summary>
-        public static byte[] StructMarshal(object anything)
+        public static byte[] StructMarshal(object structObject)
         {
-            var rawSize = Marshal.SizeOf(anything);
+            var rawSize = Marshal.SizeOf(structObject);
             var buffer = Marshal.AllocHGlobal(rawSize);
             var data = new byte[rawSize];
             try
             {
-                Marshal.StructureToPtr(anything, buffer, false);
+                Marshal.StructureToPtr(structObject, buffer, false);
                 Marshal.Copy(buffer, data, 0, rawSize);
             }
             finally
